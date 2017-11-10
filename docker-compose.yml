@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  k6:
+    container_name: k6
+    build: ./k6
+    environment:
+      SCRIPT: "localhost.js"
+      VUS: 4
+      ITERATIONS: 4
+    depends_on:
+      - api
+
+  api:
+    container_name: api
+    build: ./api
+    ports:
+      - 8080:8080
